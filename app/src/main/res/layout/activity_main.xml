@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <com.pedro.rtplibrary.view.OpenGlView
+    <com.pedro.rtplibrary.view.LightOpenGlView
         app:keepAspectRatio="true"
         android:id="@+id/openglview"
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
     <EditText
         android:layout_centerHorizontal="true"
         android:id="@+id/et_url"
-        android:hint="endpoint"
         android:textColor="#f00"
         android:textColorHint="#f00"
         android:layout_width="match_parent"
