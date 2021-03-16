@@ -91,7 +91,7 @@ class RtpService : Service() {
 
     private fun startStreamRtp(endpoint: String) {
         if (!rtmpUSB!!.isStreaming) {
-            if (rtmpUSB!!.prepareVideo(width, height, 60, 6000 * 1024, 0, uvcCamera) && rtmpUSB!!.prepareAudio()) {
+            if (rtmpUSB!!.prepareVideo(width, height, 30, 4000 * 1024, 0, uvcCamera) && rtmpUSB!!.prepareAudio()) {
                 rtmpUSB!!.startStream(uvcCamera, endpoint)
             }
         } else {
