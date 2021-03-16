@@ -91,7 +91,7 @@ class RtpService : Service() {
 
     private fun startStreamRtp(endpoint: String) {
         if (!rtmpUSB!!.isStreaming) {
-            if (rtmpUSB!!.prepareVideo(width, height, 30, 4000 * 1024, 0, uvcCamera) && rtmpUSB!!.prepareAudio()) {
+            if (rtmpUSB!!.prepareVideo(width, height, 30, 4000 * 1024, false, 0, uvcCamera) && rtmpUSB!!.prepareAudio()) {
                 rtmpUSB!!.startStream(uvcCamera, endpoint)
             }
         } else {
@@ -131,9 +131,6 @@ class RtpService : Service() {
         override fun onConnectionFailedRtmp(reason: String) {
             showNotification("Stream connection failed")
             Log.e(TAG, "RTP service destroy")
-        }
-
-        override fun onNewBitrateRtmp(bitrate: Long) {
         }
 
         override fun onDisconnectRtmp() {

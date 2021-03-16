@@ -35,7 +35,7 @@ dependencies {
     implementation project(":libuvccamera")
     implementation("androidx.appcompat:appcompat:1.2.0").exclude("res/values-v28/values-v28.xml")
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation "com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:1.9.9"
+    implementation "com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:1.5.3"
 
     testImplementation "junit:junit:4.13.2"
 
