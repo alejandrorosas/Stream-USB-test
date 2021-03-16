@@ -5,15 +5,17 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
+import com.pedro.encoder.Frame;
 import com.pedro.encoder.audio.AudioEncoder;
 import com.pedro.encoder.audio.GetAacData;
 import com.pedro.encoder.input.audio.GetMicrophoneData;
 import com.pedro.encoder.input.audio.MicrophoneManager;
+import com.pedro.encoder.input.video.Camera1ApiManager;
 import com.pedro.encoder.input.video.CameraHelper;
-import com.pedro.encoder.input.video.Frame;
 import com.pedro.encoder.input.video.GetCameraData;
 import com.pedro.encoder.utils.CodecUtil;
 import com.pedro.encoder.video.FormatVideoEncoder;
@@ -68,7 +70,6 @@ public abstract class USBBase
         context = openGlView.getContext();
         this.glInterface = openGlView;
         this.glInterface.init();
-//        cameraManager = new Camera1ApiManager(glInterface.getSurfaceTexture(), context);
         init();
     }
 
@@ -77,7 +78,6 @@ public abstract class USBBase
         context = lightOpenGlView.getContext();
         this.glInterface = lightOpenGlView;
         this.glInterface.init();
-//        cameraManager = new Camera1ApiManager(glInterface.getSurfaceTexture(), context);
         init();
     }
 
@@ -86,7 +86,6 @@ public abstract class USBBase
         this.context = context;
         glInterface = new OffScreenGlThread(context);
         glInterface.init();
-//        cameraManager = new Camera1ApiManager(glInterface.getSurfaceTexture(), context);
         init();
     }
 
@@ -112,31 +111,25 @@ public abstract class USBBase
      * @param height           resolution in px.
      * @param fps              frames per second of the stream.
      * @param bitrate          H264 in kb.
-     * @param hardwareRotation true if you want rotate using encoder, false if you want rotate with
-     *                         software if you are using a SurfaceView or TextureView or with OpenGl if you are using
-     *                         OpenGlView.
      * @param rotation         could be 90, 180, 270 or 0. You should use CameraHelper.getCameraOrientation
      *                         with SurfaceView or TextureView and 0 with OpenGlView or LightOpenGlView. NOTE: Rotation with
      *                         encoder is silence ignored in some devices.
      * @return true if success, false if you get a error (Normally because the encoder selected
      * doesn't support any configuration seated or your device hasn't a H264 encoder).
      */
-    public boolean prepareVideo(int width, int height, int fps, int bitrate, boolean hardwareRotation,
-                                int iFrameInterval, int rotation, UVCCamera uvcCamera) {
+    public boolean prepareVideo(int width, int height, int fps, int bitrate, int rotation, int iFrameInterval, UVCCamera uvcCamera) {
         if (onPreview) {
             stopPreview(uvcCamera);
             onPreview = true;
         }
-        return videoEncoder.prepareVideoEncoder(width, height, fps, bitrate, rotation, hardwareRotation,
-                iFrameInterval, FormatVideoEncoder.SURFACE);
+        return videoEncoder.prepareVideoEncoder(width, height, fps, bitrate, rotation, iFrameInterval, FormatVideoEncoder.SURFACE);
     }
 
     /**
      * backward compatibility reason
      */
-    public boolean prepareVideo(int width, int height, int fps, int bitrate, boolean hardwareRotation,
-                                int rotation, UVCCamera uvcCamera) {
-        return prepareVideo(width, height, fps, bitrate, hardwareRotation, 2, rotation, uvcCamera);
+    public boolean prepareVideo(int width, int height, int fps, int bitrate, int rotation, UVCCamera uvcCamera) {
+        return prepareVideo(width, height, fps, bitrate, rotation, 2, uvcCamera);
     }
 
     protected abstract void prepareAudioRtp(boolean isStereo, int sampleRate);
@@ -157,7 +150,7 @@ public abstract class USBBase
                                 boolean noiseSuppressor) {
         microphoneManager.createMicrophone(sampleRate, isStereo, echoCanceler, noiseSuppressor);
         prepareAudioRtp(isStereo, sampleRate);
-        return audioEncoder.prepareAudioEncoder(bitrate, sampleRate, isStereo);
+        return audioEncoder.prepareAudioEncoder(bitrate, sampleRate, isStereo, 0);
     }
 
     /**
@@ -169,7 +162,7 @@ public abstract class USBBase
      */
     public boolean prepareVideo(UVCCamera uvcCamera) {
         int rotation = CameraHelper.getCameraOrientation(context);
-        return prepareVideo(640, 480, 30, 1200 * 1024, false, rotation, uvcCamera);
+        return prepareVideo(640, 480, 30, 1200 * 1024, rotation, uvcCamera);
     }
 
     /**
@@ -179,7 +172,7 @@ public abstract class USBBase
      * doesn't support any configuration seated or your device hasn't a AAC encoder).
      */
     public boolean prepareAudio() {
-        return prepareAudio(64 * 1024, 32000, true, false, false);
+        return prepareAudio(128 * 1024, 48000, true, false, false);
     }
 
     /**
@@ -399,7 +392,7 @@ public abstract class USBBase
      * instance it.
      */
     public void disableVideo() {
-        videoEncoder.startSendBlackImage();
+//        videoEncoder.start();
         videoEnabled = false;
     }
 
@@ -407,7 +400,7 @@ public abstract class USBBase
      * Enable send camera frames.
      */
     public void enableVideo() {
-        videoEncoder.stopSendBlackImage();
+//        videoEncoder.stopSendBlackImage();
         videoEnabled = true;
     }
 
@@ -524,8 +517,8 @@ public abstract class USBBase
     }
 
     @Override
-    public void inputPCMData(byte[] buffer, int size) {
-        audioEncoder.inputPCMData(buffer, size);
+    public void inputPCMData(Frame frame) {
+        audioEncoder.inputPCMData(frame);
     }
 
     @Override

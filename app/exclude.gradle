@@ -1,0 +1,25 @@
+final List<String> exclusions = [];
+
+Dependency.metaClass.exclude = { String[] currentExclusions ->
+    currentExclusions.each {
+        exclusions.add("${getGroup()}/${getName()}/${getVersion()}/${it}")
+    }
+    return thisObject
+}
+
+
+tasks.create("excludeTask") {
+    exclusions.each {
+        File file = file("${buildDir}/intermediates/exploded-aar/${it}")
+        println("Excluding file " + file)
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+}
+
+tasks.whenTaskAdded({
+    if (it.name.matches(/^process.*Resources$/)) {
+        it.dependsOn excludeTask
+    }
+})

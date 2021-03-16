@@ -1,20 +1,23 @@
 package com.pedro.usbtest
 
-import android.app.Activity
-import android.hardware.usb.UsbDevice
+import android.app.ActivityManager
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import android.view.SurfaceHolder
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.pedro.rtplibrary.view.LightOpenGlView
+import com.pedro.rtplibrary.view.OpenGlView
 import com.pedro.usbtest.streamlib.RtmpUSB
 import com.serenegiant.usb.USBMonitor
 import com.serenegiant.usb.UVCCamera
-import net.ossrs.rtmp.ConnectCheckerRtmp
 
-
-class MainActivity : Activity(), SurfaceHolder.Callback {
+class MainActivity : AppCompatActivity(), SurfaceHolder.Callback {
 
     private lateinit var usbMonitor: USBMonitor
     private var uvcCamera: UVCCamera? = null
@@ -27,144 +30,97 @@ class MainActivity : Activity(), SurfaceHolder.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        rtmpUSB = RtmpUSB(findViewById<LightOpenGlView>(R.id.openglview), connectCheckerRtmp)
-        usbMonitor = USBMonitor(this, onDeviceConnectListener)
-        usbMonitor.register()
         findViewById<EditText>(R.id.et_url).setText(URL)
+        findViewById<OpenGlView>(R.id.openglview).holder.addCallback(this)
         findViewById<Button>(R.id.start_stop).setOnClickListener {
-            if (uvcCamera != null) {
-                if (!rtmpUSB.isStreaming) {
-                    startStream()
-                } else {
-                    stopStream()
-                }
+            if (isMyServiceRunning(RtpService::class.java)) {
+                stopStream()
+            } else {
+                startStream()
             }
-        }
-    }
-
-    private fun restartStream() {
-        if (!rtmpUSB.isStreaming) {
-            startStream()
-        } else {
-            stopStream()
-            startStream()
         }
     }
 
     private fun startStream() {
-        val startStop = findViewById<Button>(R.id.start_stop)
-        startStream(findViewById<EditText>(R.id.et_url).text.toString())
-        runOnUiThread {
-            startStop.text = "Stop stream"
-        }
+        findViewById<Button>(R.id.start_stop).setText(R.string.stop_button)
+        startService(Intent(applicationContext, RtpService::class.java).apply {
+            putExtra("endpoint", findViewById<EditText>(R.id.et_url).text.toString())
+            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        })
     }
 
     private fun stopStream() {
-        val startStop = findViewById<Button>(R.id.start_stop)
-        rtmpUSB.stopStream(uvcCamera)
-        runOnUiThread {
-            startStop.text = "Start stream"
-        }
+        stopService(Intent(applicationContext, RtpService::class.java))
+        findViewById<Button>(R.id.start_stop).setText(R.string.start_button)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (rtmpUSB.isStreaming && uvcCamera != null) rtmpUSB.stopStream(uvcCamera)
-        if (rtmpUSB.isOnPreview && uvcCamera != null) rtmpUSB.stopPreview(uvcCamera)
-        uvcCamera?.close()
-        usbMonitor.unregister()
-    }
-
-    private fun startStream(url: String) {
-        if (rtmpUSB.prepareVideo(width, height, 60, 4000 * 1024, false, 0, uvcCamera) && rtmpUSB.prepareAudio()) {
-            rtmpUSB.startStream(uvcCamera, url)
-        }
-    }
-
-    private fun disconnect() {
-        uvcCamera?.let {
-            rtmpUSB.stopPreview(it)
-            stopStream()
-            it.close()
-            uvcCamera = null
-        }
-    }
-
-    private val connectCheckerRtmp = object : ConnectCheckerRtmp {
-
-        override fun onAuthSuccessRtmp() {
-            runOnUiThread {
-                Toast.makeText(this@MainActivity, "onAuthSuccessRtmp", Toast.LENGTH_SHORT).show()
+    @Suppress("DEPRECATION")
+    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (service in manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                return true
             }
         }
+        return false
+    }
 
-        override fun onConnectionSuccessRtmp() {
-            runOnUiThread {
-                Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        override fun onConnectionFailedRtmp(reason: String?) {
-            runOnUiThread {
-                Toast.makeText(this@MainActivity, "Failed $reason", Toast.LENGTH_SHORT).show()
-                rtmpUSB.stopStream(uvcCamera)
-            }
-        }
-
-        override fun onAuthErrorRtmp() {
-            runOnUiThread {
-                Toast.makeText(this@MainActivity, "onAuthErrorRtmp", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        override fun onDisconnectRtmp() {
-            runOnUiThread {
-                Toast.makeText(this@MainActivity, "Disconnect", Toast.LENGTH_SHORT).show()
-            }
+    override fun onResume() {
+        super.onResume()
+        if (isMyServiceRunning(RtpService::class.java)) {
+            findViewById<Button>(R.id.start_stop).setText(R.string.stop_button)
+        } else {
+            findViewById<Button>(R.id.start_stop).setText(R.string.start_button)
         }
     }
 
-    private val onDeviceConnectListener = object : USBMonitor.OnDeviceConnectListener {
-        override fun onAttach(device: UsbDevice?) {
-            usbMonitor.requestPermission(device)
-        }
-
-        override fun onConnect(device: UsbDevice?, ctrlBlock: USBMonitor.UsbControlBlock?, createNew: Boolean) {
-            val camera = UVCCamera()
-            camera.open(ctrlBlock)
-            try {
-                camera.setPreviewSize(width, height, UVCCamera.FRAME_FORMAT_MJPEG)
-            } catch (e: IllegalArgumentException) {
-                camera.destroy()
-                try {
-                    camera.setPreviewSize(width, height, UVCCamera.DEFAULT_PREVIEW_MODE)
-                } catch (e1: IllegalArgumentException) {
-                    return
-                }
-            }
-            uvcCamera = camera
-            rtmpUSB.startPreview(uvcCamera, width, height)
-            restartStream()
-        }
-
-        override fun onDisconnect(device: UsbDevice?, ctrlBlock: USBMonitor.UsbControlBlock?) {
-            disconnect()
-        }
-
-        override fun onCancel(device: UsbDevice?) {
-        }
-
-        override fun onDettach(device: UsbDevice?) {
-            disconnect()
+    override fun surfaceChanged(holder: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+        if (mBound) {
+            mService.setView(findViewById<OpenGlView>(R.id.openglview))
+            mService.startPreview()
         }
     }
 
-    override fun surfaceCreated(p0: SurfaceHolder?) {
+    override fun surfaceDestroyed(holder: SurfaceHolder) {
+        if (mBound) {
+            mService.setView(applicationContext)
+            mService.stopPreview()
+        }
     }
 
-    override fun surfaceChanged(p0: SurfaceHolder?, p1: Int, p2: Int, p3: Int) {
+    override fun surfaceCreated(holder: SurfaceHolder) {
+        if (mBound) {
+            mService.setView(applicationContext)
+            mService.stopPreview()
+        }
     }
 
-    override fun surfaceDestroyed(p0: SurfaceHolder?) {
+    private lateinit var mService: RtpService
+    private var mBound: Boolean = false
+
+    /** Defines callbacks for service binding, passed to bindService()  */
+    private val connection = object : ServiceConnection {
+
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            val binder = service as RtpService.LocalBinder
+            mService = binder.getService()
+
+//            mService.setView(applicationContext)
+//            mService.startPreview()
+            mBound = true
+        }
+
+        override fun onServiceDisconnected(arg0: ComponentName) {
+            mBound = false
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (mBound) {
+            unbindService(connection)
+            mBound = false
+        }
     }
 }

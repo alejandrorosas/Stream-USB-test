@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <com.pedro.rtplibrary.view.LightOpenGlView
+    <com.pedro.rtplibrary.view.OpenGlView
         app:keepAspectRatio="true"
         android:id="@+id/openglview"
         android:layout_width="match_parent"

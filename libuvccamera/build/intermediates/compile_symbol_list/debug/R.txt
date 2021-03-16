@@ -135,6 +135,7 @@ int attr defaultQueryHint 0x0
 int attr defaultValue 0x0
 int attr default_value 0x0
 int attr dependency 0x0
+int attr dialogCornerRadius 0x0
 int attr dialogIcon 0x0
 int attr dialogLayout 0x0
 int attr dialogMessage 0x0
@@ -169,6 +170,7 @@ int attr fastScrollHorizontalThumbDrawable 0x0
 int attr fastScrollHorizontalTrackDrawable 0x0
 int attr fastScrollVerticalThumbDrawable 0x0
 int attr fastScrollVerticalTrackDrawable 0x0
+int attr firstBaselineToTopHeight 0x0
 int attr flipChildPos 0x0
 int attr font 0x0
 int attr fontFamily 0x0
@@ -179,6 +181,7 @@ int attr fontProviderFetchTimeout 0x0
 int attr fontProviderPackage 0x0
 int attr fontProviderQuery 0x0
 int attr fontStyle 0x0
+int attr fontVariationSettings 0x0
 int attr fontWeight 0x0
 int attr fragment 0x0
 int attr frame_color 0x0
@@ -201,9 +204,11 @@ int attr indeterminateProgressStyle 0x0
 int attr initialActivityCount 0x0
 int attr initialExpandedChildrenCount 0x0
 int attr isLightTheme 0x0
+int attr isPreferenceVisible 0x0
 int attr itemPadding 0x0
 int attr key 0x0
 int attr keylines 0x0
+int attr lastBaselineToBottomHeight 0x0
 int attr layout 0x0
 int attr layoutManager 0x0
 int attr layout_anchor 0x0
@@ -212,6 +217,7 @@ int attr layout_behavior 0x0
 int attr layout_dodgeInsetEdges 0x0
 int attr layout_insetEdge 0x0
 int attr layout_keyline 0x0
+int attr lineHeight 0x0
 int attr listChoiceBackgroundIndicator 0x0
 int attr listDivider 0x0
 int attr listDividerAlertDialog 0x0
@@ -375,6 +381,7 @@ int attr tooltipText 0x0
 int attr track 0x0
 int attr trackTint 0x0
 int attr trackTintMode 0x0
+int attr ttcIndex 0x0
 int attr value_format 0x0
 int attr viewInflaterClass 0x0
 int attr voiceIcon 0x0
@@ -394,6 +401,7 @@ int bool abc_action_bar_embed_tabs 0x0
 int bool abc_allow_stacked_button_bar 0x0
 int bool abc_config_actionMenuItemAllCaps 0x0
 int bool abc_config_showMenuShortcutsWhenKeyboardPresent 0x0
+int bool config_materialPreferenceIconSpaceReserved 0x0
 int color ALICEBLUE 0x0
 int color ANTIQUEWHITE 0x0
 int color AQUA 0x0
@@ -958,6 +966,8 @@ int color dim_foreground_material_dark 0x0
 int color dim_foreground_material_light 0x0
 int color encode_view 0x0
 int color error_color_material 0x0
+int color error_color_material_dark 0x0
+int color error_color_material_light 0x0
 int color foreground_material_dark 0x0
 int color foreground_material_light 0x0
 int color highlighted_text_material_dark 0x0
@@ -1036,6 +1046,7 @@ int dimen abc_config_prefDialogWidth 0x0
 int dimen abc_control_corner_material 0x0
 int dimen abc_control_inset_material 0x0
 int dimen abc_control_padding_material 0x0
+int dimen abc_dialog_corner_radius_material 0x0
 int dimen abc_dialog_fixed_height_major 0x0
 int dimen abc_dialog_fixed_height_minor 0x0
 int dimen abc_dialog_fixed_width_major 0x0
@@ -1095,6 +1106,8 @@ int dimen compat_button_inset_vertical_material 0x0
 int dimen compat_button_padding_horizontal_material 0x0
 int dimen compat_button_padding_vertical_material 0x0
 int dimen compat_control_corner_material 0x0
+int dimen compat_notification_large_icon_max_height 0x0
+int dimen compat_notification_large_icon_max_width 0x0
 int dimen disabled_alpha_material_dark 0x0
 int dimen disabled_alpha_material_light 0x0
 int dimen fastscroll_default_thickness 0x0
@@ -1129,12 +1142,18 @@ int dimen notification_small_icon_size_as_large 0x0
 int dimen notification_subtext_size 0x0
 int dimen notification_top_pad 0x0
 int dimen notification_top_pad_large_text 0x0
+int dimen preference_category_padding_start 0x0
 int dimen preference_icon_minWidth 0x0
+int dimen preference_no_icon_padding_start 0x0
 int dimen preference_seekbar_padding_end 0x0
 int dimen preference_seekbar_padding_start 0x0
 int dimen preference_seekbar_value_width 0x0
 int dimen scale_type_margin_top 0x0
 int dimen scale_type_padding 0x0
+int dimen subtitle_corner_radius 0x0
+int dimen subtitle_outline_width 0x0
+int dimen subtitle_shadow_offset 0x0
+int dimen subtitle_shadow_radius 0x0
 int dimen text_sz_scale_type 0x0
 int dimen tooltip_corner_radius 0x0
 int dimen tooltip_horizontal_padding 0x0
@@ -1185,6 +1204,7 @@ int drawable abc_ic_star_half_black_48dp 0x0
 int drawable abc_ic_voice_search_api_material 0x0
 int drawable abc_item_background_holo_dark 0x0
 int drawable abc_item_background_holo_light 0x0
+int drawable abc_list_divider_material 0x0
 int drawable abc_list_divider_mtrl_alpha 0x0
 int drawable abc_list_focused_holo 0x0
 int drawable abc_list_longpressed_holo 0x0
@@ -1307,6 +1327,7 @@ int id color8_button 0x0
 int id color_picker 0x0
 int id color_picker_frame 0x0
 int id color_select_button 0x0
+int id content 0x0
 int id contentPanel 0x0
 int id crop_center 0x0
 int id custom 0x0
@@ -1336,6 +1357,7 @@ int id frame_type_cross_full 0x0
 int id frame_type_cross_quarter 0x0
 int id frame_type_frame 0x0
 int id frame_type_none 0x0
+int id group_divider 0x0
 int id has_divider 0x0
 int id home 0x0
 int id horizontal 0x0
@@ -1373,6 +1395,7 @@ int id position 0x0
 int id progress_circular 0x0
 int id progress_horizontal 0x0
 int id radio 0x0
+int id recycler_view 0x0
 int id right 0x0
 int id right_icon 0x0
 int id right_side 0x0
@@ -1422,6 +1445,8 @@ int id submit_area 0x0
 int id switchWidget 0x0
 int id tabMode 0x0
 int id tag_transition_group 0x0
+int id tag_unhandled_key_event_manager 0x0
+int id tag_unhandled_key_listeners 0x0
 int id text 0x0
 int id text2 0x0
 int id textSpacerNoButtons 0x0
@@ -1456,6 +1481,7 @@ int layout abc_activity_chooser_view_list_item 0x0
 int layout abc_alert_dialog_button_bar_material 0x0
 int layout abc_alert_dialog_material 0x0
 int layout abc_alert_dialog_title_material 0x0
+int layout abc_cascading_menu_item_layout 0x0
 int layout abc_dialog_title_material 0x0
 int layout abc_expanded_menu_layout 0x0
 int layout abc_list_menu_item_checkbox 0x0
@@ -1558,6 +1584,16 @@ int string abc_font_family_headline_material 0x0
 int string abc_font_family_menu_material 0x0
 int string abc_font_family_subhead_material 0x0
 int string abc_font_family_title_material 0x0
+int string abc_menu_alt_shortcut_label 0x0
+int string abc_menu_ctrl_shortcut_label 0x0
+int string abc_menu_delete_shortcut_label 0x0
+int string abc_menu_enter_shortcut_label 0x0
+int string abc_menu_function_shortcut_label 0x0
+int string abc_menu_meta_shortcut_label 0x0
+int string abc_menu_shift_shortcut_label 0x0
+int string abc_menu_space_shortcut_label 0x0
+int string abc_menu_sym_shortcut_label 0x0
+int string abc_prepend_shortcut_label 0x0
 int string abc_search_hint 0x0
 int string abc_searchview_description_clear 0x0
 int string abc_searchview_description_query 0x0
@@ -1703,6 +1739,8 @@ int style Base_V23_Theme_AppCompat_Light 0x0
 int style Base_V26_Theme_AppCompat 0x0
 int style Base_V26_Theme_AppCompat_Light 0x0
 int style Base_V26_Widget_AppCompat_Toolbar 0x0
+int style Base_V28_Theme_AppCompat 0x0
+int style Base_V28_Theme_AppCompat_Light 0x0
 int style Base_V7_ThemeOverlay_AppCompat_Dialog 0x0
 int style Base_V7_Theme_AppCompat 0x0
 int style Base_V7_Theme_AppCompat_Dialog 0x0
@@ -1814,7 +1852,10 @@ int style RtlOverlay_Widget_AppCompat_ActionBar_TitleItem 0x0
 int style RtlOverlay_Widget_AppCompat_DialogTitle_Icon 0x0
 int style RtlOverlay_Widget_AppCompat_PopupMenuItem 0x0
 int style RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup 0x0
+int style RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut 0x0
+int style RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow 0x0
 int style RtlOverlay_Widget_AppCompat_PopupMenuItem_Text 0x0
+int style RtlOverlay_Widget_AppCompat_PopupMenuItem_Title 0x0
 int style RtlOverlay_Widget_AppCompat_SearchView_MagIcon 0x0
 int style RtlOverlay_Widget_AppCompat_Search_DropDown 0x0
 int style RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 0x0
@@ -2023,6 +2064,7 @@ int[] styleable ActionBarLayout { 0x10100b3 }
 int styleable ActionBarLayout_android_layout_gravity 0
 int[] styleable ActionMenuItemView { 0x101013f }
 int styleable ActionMenuItemView_android_minWidth 0
+int[] styleable ActionMenuView {  }
 int[] styleable ActionMode { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable ActionMode_background 0
 int styleable ActionMode_backgroundSplit 1
@@ -2042,6 +2084,21 @@ int styleable AlertDialog_listLayout 4
 int styleable AlertDialog_multiChoiceItemLayout 5
 int styleable AlertDialog_showTitle 6
 int styleable AlertDialog_singleChoiceItemLayout 7
+int[] styleable AnimatedStateListDrawableCompat { 0x1010196, 0x101011c, 0x101030c, 0x101030d, 0x1010195, 0x1010194 }
+int styleable AnimatedStateListDrawableCompat_android_constantSize 0
+int styleable AnimatedStateListDrawableCompat_android_dither 1
+int styleable AnimatedStateListDrawableCompat_android_enterFadeDuration 2
+int styleable AnimatedStateListDrawableCompat_android_exitFadeDuration 3
+int styleable AnimatedStateListDrawableCompat_android_variablePadding 4
+int styleable AnimatedStateListDrawableCompat_android_visible 5
+int[] styleable AnimatedStateListDrawableItem { 0x1010199, 0x10100d0 }
+int styleable AnimatedStateListDrawableItem_android_drawable 0
+int styleable AnimatedStateListDrawableItem_android_id 1
+int[] styleable AnimatedStateListDrawableTransition { 0x1010199, 0x101044a, 0x101044b, 0x1010449 }
+int styleable AnimatedStateListDrawableTransition_android_drawable 0
+int styleable AnimatedStateListDrawableTransition_android_fromId 1
+int styleable AnimatedStateListDrawableTransition_android_reversible 2
+int styleable AnimatedStateListDrawableTransition_android_toId 3
 int[] styleable AppCompatImageView { 0x1010119, 0x0, 0x0, 0x0 }
 int styleable AppCompatImageView_android_src 0
 int styleable AppCompatImageView_srcCompat 1
@@ -2060,16 +2117,19 @@ int styleable AppCompatTextHelper_android_drawableRight 3
 int styleable AppCompatTextHelper_android_drawableStart 4
 int styleable AppCompatTextHelper_android_drawableTop 5
 int styleable AppCompatTextHelper_android_textAppearance 6
-int[] styleable AppCompatTextView { 0x1010034, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int[] styleable AppCompatTextView { 0x1010034, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable AppCompatTextView_android_textAppearance 0
 int styleable AppCompatTextView_autoSizeMaxTextSize 1
 int styleable AppCompatTextView_autoSizeMinTextSize 2
 int styleable AppCompatTextView_autoSizePresetSizes 3
 int styleable AppCompatTextView_autoSizeStepGranularity 4
 int styleable AppCompatTextView_autoSizeTextType 5
-int styleable AppCompatTextView_fontFamily 6
-int styleable AppCompatTextView_textAllCaps 7
-int[] styleable AppCompatTheme { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x10100ae, 0x1010057, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int styleable AppCompatTextView_firstBaselineToTopHeight 6
+int styleable AppCompatTextView_fontFamily 7
+int styleable AppCompatTextView_lastBaselineToBottomHeight 8
+int styleable AppCompatTextView_lineHeight 9
+int styleable AppCompatTextView_textAllCaps 10
+int[] styleable AppCompatTheme { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x10100ae, 0x1010057, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable AppCompatTheme_actionBarDivider 0
 int styleable AppCompatTheme_actionBarItemBackground 1
 int styleable AppCompatTheme_actionBarPopupTheme 2
@@ -2129,67 +2189,68 @@ int styleable AppCompatTheme_colorPrimary 55
 int styleable AppCompatTheme_colorPrimaryDark 56
 int styleable AppCompatTheme_colorSwitchThumbNormal 57
 int styleable AppCompatTheme_controlBackground 58
-int styleable AppCompatTheme_dialogPreferredPadding 59
-int styleable AppCompatTheme_dialogTheme 60
-int styleable AppCompatTheme_dividerHorizontal 61
-int styleable AppCompatTheme_dividerVertical 62
-int styleable AppCompatTheme_dropDownListViewStyle 63
-int styleable AppCompatTheme_dropdownListPreferredItemHeight 64
-int styleable AppCompatTheme_editTextBackground 65
-int styleable AppCompatTheme_editTextColor 66
-int styleable AppCompatTheme_editTextStyle 67
-int styleable AppCompatTheme_homeAsUpIndicator 68
-int styleable AppCompatTheme_imageButtonStyle 69
-int styleable AppCompatTheme_listChoiceBackgroundIndicator 70
-int styleable AppCompatTheme_listDividerAlertDialog 71
-int styleable AppCompatTheme_listMenuViewStyle 72
-int styleable AppCompatTheme_listPopupWindowStyle 73
-int styleable AppCompatTheme_listPreferredItemHeight 74
-int styleable AppCompatTheme_listPreferredItemHeightLarge 75
-int styleable AppCompatTheme_listPreferredItemHeightSmall 76
-int styleable AppCompatTheme_listPreferredItemPaddingLeft 77
-int styleable AppCompatTheme_listPreferredItemPaddingRight 78
-int styleable AppCompatTheme_panelBackground 79
-int styleable AppCompatTheme_panelMenuListTheme 80
-int styleable AppCompatTheme_panelMenuListWidth 81
-int styleable AppCompatTheme_popupMenuStyle 82
-int styleable AppCompatTheme_popupWindowStyle 83
-int styleable AppCompatTheme_radioButtonStyle 84
-int styleable AppCompatTheme_ratingBarStyle 85
-int styleable AppCompatTheme_ratingBarStyleIndicator 86
-int styleable AppCompatTheme_ratingBarStyleSmall 87
-int styleable AppCompatTheme_searchViewStyle 88
-int styleable AppCompatTheme_seekBarStyle 89
-int styleable AppCompatTheme_selectableItemBackground 90
-int styleable AppCompatTheme_selectableItemBackgroundBorderless 91
-int styleable AppCompatTheme_spinnerDropDownItemStyle 92
-int styleable AppCompatTheme_spinnerStyle 93
-int styleable AppCompatTheme_switchStyle 94
-int styleable AppCompatTheme_textAppearanceLargePopupMenu 95
-int styleable AppCompatTheme_textAppearanceListItem 96
-int styleable AppCompatTheme_textAppearanceListItemSecondary 97
-int styleable AppCompatTheme_textAppearanceListItemSmall 98
-int styleable AppCompatTheme_textAppearancePopupMenuHeader 99
-int styleable AppCompatTheme_textAppearanceSearchResultSubtitle 100
-int styleable AppCompatTheme_textAppearanceSearchResultTitle 101
-int styleable AppCompatTheme_textAppearanceSmallPopupMenu 102
-int styleable AppCompatTheme_textColorAlertDialogListItem 103
-int styleable AppCompatTheme_textColorSearchUrl 104
-int styleable AppCompatTheme_toolbarNavigationButtonStyle 105
-int styleable AppCompatTheme_toolbarStyle 106
-int styleable AppCompatTheme_tooltipForegroundColor 107
-int styleable AppCompatTheme_tooltipFrameBackground 108
-int styleable AppCompatTheme_viewInflaterClass 109
-int styleable AppCompatTheme_windowActionBar 110
-int styleable AppCompatTheme_windowActionBarOverlay 111
-int styleable AppCompatTheme_windowActionModeOverlay 112
-int styleable AppCompatTheme_windowFixedHeightMajor 113
-int styleable AppCompatTheme_windowFixedHeightMinor 114
-int styleable AppCompatTheme_windowFixedWidthMajor 115
-int styleable AppCompatTheme_windowFixedWidthMinor 116
-int styleable AppCompatTheme_windowMinWidthMajor 117
-int styleable AppCompatTheme_windowMinWidthMinor 118
-int styleable AppCompatTheme_windowNoTitle 119
+int styleable AppCompatTheme_dialogCornerRadius 59
+int styleable AppCompatTheme_dialogPreferredPadding 60
+int styleable AppCompatTheme_dialogTheme 61
+int styleable AppCompatTheme_dividerHorizontal 62
+int styleable AppCompatTheme_dividerVertical 63
+int styleable AppCompatTheme_dropDownListViewStyle 64
+int styleable AppCompatTheme_dropdownListPreferredItemHeight 65
+int styleable AppCompatTheme_editTextBackground 66
+int styleable AppCompatTheme_editTextColor 67
+int styleable AppCompatTheme_editTextStyle 68
+int styleable AppCompatTheme_homeAsUpIndicator 69
+int styleable AppCompatTheme_imageButtonStyle 70
+int styleable AppCompatTheme_listChoiceBackgroundIndicator 71
+int styleable AppCompatTheme_listDividerAlertDialog 72
+int styleable AppCompatTheme_listMenuViewStyle 73
+int styleable AppCompatTheme_listPopupWindowStyle 74
+int styleable AppCompatTheme_listPreferredItemHeight 75
+int styleable AppCompatTheme_listPreferredItemHeightLarge 76
+int styleable AppCompatTheme_listPreferredItemHeightSmall 77
+int styleable AppCompatTheme_listPreferredItemPaddingLeft 78
+int styleable AppCompatTheme_listPreferredItemPaddingRight 79
+int styleable AppCompatTheme_panelBackground 80
+int styleable AppCompatTheme_panelMenuListTheme 81
+int styleable AppCompatTheme_panelMenuListWidth 82
+int styleable AppCompatTheme_popupMenuStyle 83
+int styleable AppCompatTheme_popupWindowStyle 84
+int styleable AppCompatTheme_radioButtonStyle 85
+int styleable AppCompatTheme_ratingBarStyle 86
+int styleable AppCompatTheme_ratingBarStyleIndicator 87
+int styleable AppCompatTheme_ratingBarStyleSmall 88
+int styleable AppCompatTheme_searchViewStyle 89
+int styleable AppCompatTheme_seekBarStyle 90
+int styleable AppCompatTheme_selectableItemBackground 91
+int styleable AppCompatTheme_selectableItemBackgroundBorderless 92
+int styleable AppCompatTheme_spinnerDropDownItemStyle 93
+int styleable AppCompatTheme_spinnerStyle 94
+int styleable AppCompatTheme_switchStyle 95
+int styleable AppCompatTheme_textAppearanceLargePopupMenu 96
+int styleable AppCompatTheme_textAppearanceListItem 97
+int styleable AppCompatTheme_textAppearanceListItemSecondary 98
+int styleable AppCompatTheme_textAppearanceListItemSmall 99
+int styleable AppCompatTheme_textAppearancePopupMenuHeader 100
+int styleable AppCompatTheme_textAppearanceSearchResultSubtitle 101
+int styleable AppCompatTheme_textAppearanceSearchResultTitle 102
+int styleable AppCompatTheme_textAppearanceSmallPopupMenu 103
+int styleable AppCompatTheme_textColorAlertDialogListItem 104
+int styleable AppCompatTheme_textColorSearchUrl 105
+int styleable AppCompatTheme_toolbarNavigationButtonStyle 106
+int styleable AppCompatTheme_toolbarStyle 107
+int styleable AppCompatTheme_tooltipForegroundColor 108
+int styleable AppCompatTheme_tooltipFrameBackground 109
+int styleable AppCompatTheme_viewInflaterClass 110
+int styleable AppCompatTheme_windowActionBar 111
+int styleable AppCompatTheme_windowActionBarOverlay 112
+int styleable AppCompatTheme_windowActionModeOverlay 113
+int styleable AppCompatTheme_windowFixedHeightMajor 114
+int styleable AppCompatTheme_windowFixedHeightMinor 115
+int styleable AppCompatTheme_windowFixedWidthMajor 116
+int styleable AppCompatTheme_windowFixedWidthMinor 117
+int styleable AppCompatTheme_windowMinWidthMajor 118
+int styleable AppCompatTheme_windowMinWidthMinor 119
+int styleable AppCompatTheme_windowNoTitle 120
 int[] styleable AspectScaledTextureView { 0x0, 0x0 }
 int styleable AspectScaledTextureView_aspect_ratio 0
 int styleable AspectScaledTextureView_scale_mode 1
@@ -2253,13 +2314,17 @@ int styleable FontFamily_fontProviderFetchStrategy 2
 int styleable FontFamily_fontProviderFetchTimeout 3
 int styleable FontFamily_fontProviderPackage 4
 int styleable FontFamily_fontProviderQuery 5
-int[] styleable FontFamilyFont { 0x1010532, 0x101053f, 0x1010533, 0x0, 0x0, 0x0 }
+int[] styleable FontFamilyFont { 0x1010532, 0x101053f, 0x1010570, 0x1010533, 0x101056f, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable FontFamilyFont_android_font 0
 int styleable FontFamilyFont_android_fontStyle 1
-int styleable FontFamilyFont_android_fontWeight 2
-int styleable FontFamilyFont_font 3
-int styleable FontFamilyFont_fontStyle 4
-int styleable FontFamilyFont_fontWeight 5
+int styleable FontFamilyFont_android_fontVariationSettings 2
+int styleable FontFamilyFont_android_fontWeight 3
+int styleable FontFamilyFont_android_ttcIndex 4
+int styleable FontFamilyFont_font 5
+int styleable FontFamilyFont_fontStyle 6
+int styleable FontFamilyFont_fontVariationSettings 7
+int styleable FontFamilyFont_fontWeight 8
+int styleable FontFamilyFont_ttcIndex 9
 int[] styleable FrameView { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable FrameView_frame_color 0
 int styleable FrameView_frame_type 1
@@ -2270,6 +2335,22 @@ int styleable FrameView_scale_scale 5
 int styleable FrameView_scale_type 6
 int styleable FrameView_scale_width 7
 int styleable FrameView_tick_color 8
+int[] styleable GradientColor { 0x101020b, 0x10101a2, 0x10101a3, 0x101019e, 0x1010512, 0x1010513, 0x10101a4, 0x101019d, 0x1010510, 0x1010511, 0x1010201, 0x10101a1 }
+int styleable GradientColor_android_centerColor 0
+int styleable GradientColor_android_centerX 1
+int styleable GradientColor_android_centerY 2
+int styleable GradientColor_android_endColor 3
+int styleable GradientColor_android_endX 4
+int styleable GradientColor_android_endY 5
+int styleable GradientColor_android_gradientRadius 6
+int styleable GradientColor_android_startColor 7
+int styleable GradientColor_android_startX 8
+int styleable GradientColor_android_startY 9
+int styleable GradientColor_android_tileMode 10
+int styleable GradientColor_android_type 11
+int[] styleable GradientColorItem { 0x10101a5, 0x1010514 }
+int styleable GradientColorItem_android_color 0
+int styleable GradientColorItem_android_offset 1
 int[] styleable IAspectRatioView { 0x0 }
 int styleable IAspectRatioView_aspect_ratio 0
 int[] styleable IScaledView { 0x0 }
@@ -2360,7 +2441,7 @@ int styleable PopupWindow_android_popupBackground 1
 int styleable PopupWindow_overlapAnchor 2
 int[] styleable PopupWindowBackgroundState { 0x0 }
 int styleable PopupWindowBackgroundState_state_above_anchor 0
-int[] styleable Preference { 0x0, 0x0, 0x10101ed, 0x10101ec, 0x101000e, 0x10102e3, 0x1010002, 0x1010561, 0x10101e8, 0x10100f2, 0x10101ea, 0x101000d, 0x10101e6, 0x10101ee, 0x101055c, 0x10101e9, 0x10101e1, 0x10101eb, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
+int[] styleable Preference { 0x0, 0x0, 0x10101ed, 0x10101ec, 0x101000e, 0x10102e3, 0x1010002, 0x1010561, 0x10101e8, 0x10100f2, 0x10101ea, 0x101000d, 0x10101e6, 0x10101ee, 0x101055c, 0x10101e9, 0x10101e1, 0x10101eb, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable Preference_allowDividerAbove 0
 int styleable Preference_allowDividerBelow 1
 int styleable Preference_android_defaultValue 2
@@ -2385,16 +2466,17 @@ int styleable Preference_enabled 20
 int styleable Preference_fragment 21
 int styleable Preference_icon 22
 int styleable Preference_iconSpaceReserved 23
-int styleable Preference_key 24
-int styleable Preference_layout 25
-int styleable Preference_order 26
-int styleable Preference_persistent 27
-int styleable Preference_selectable 28
-int styleable Preference_shouldDisableView 29
-int styleable Preference_singleLineTitle 30
-int styleable Preference_summary 31
-int styleable Preference_title 32
-int styleable Preference_widgetLayout 33
+int styleable Preference_isPreferenceVisible 24
+int styleable Preference_key 25
+int styleable Preference_layout 26
+int styleable Preference_order 27
+int styleable Preference_persistent 28
+int styleable Preference_selectable 29
+int styleable Preference_shouldDisableView 30
+int styleable Preference_singleLineTitle 31
+int styleable Preference_summary 32
+int styleable Preference_title 33
+int styleable Preference_widgetLayout 34
 int[] styleable PreferenceFragment { 0x0, 0x1010129, 0x101012a, 0x10100f2 }
 int styleable PreferenceFragment_allowDividerAfterLastItem 0
 int styleable PreferenceFragment_android_divider 1
@@ -2494,6 +2576,15 @@ int styleable Spinner_android_entries 1
 int styleable Spinner_android_popupBackground 2
 int styleable Spinner_android_prompt 3
 int styleable Spinner_popupTheme 4
+int[] styleable StateListDrawable { 0x1010196, 0x101011c, 0x101030c, 0x101030d, 0x1010195, 0x1010194 }
+int styleable StateListDrawable_android_constantSize 0
+int styleable StateListDrawable_android_dither 1
+int styleable StateListDrawable_android_enterFadeDuration 2
+int styleable StateListDrawable_android_exitFadeDuration 3
+int styleable StateListDrawable_android_variablePadding 4
+int styleable StateListDrawable_android_visible 5
+int[] styleable StateListDrawableItem { 0x1010199 }
+int styleable StateListDrawableItem_android_drawable 0
 int[] styleable SwitchCompat { 0x1010125, 0x1010124, 0x1010142, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 }
 int styleable SwitchCompat_android_textOff 0
 int styleable SwitchCompat_android_textOn 1
