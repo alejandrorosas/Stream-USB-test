@@ -27,18 +27,16 @@ android {
     }
 }
 
-apply from: 'exclude.gradle'
-
 dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation project(":libuvccamera")
-    implementation("androidx.appcompat:appcompat:1.2.0").exclude("res/values-v28/values-v28.xml")
+    implementation("androidx.appcompat:appcompat:1.2.0")
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
     implementation "com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:1.5.3"
 
     testImplementation "junit:junit:4.13.2"
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
