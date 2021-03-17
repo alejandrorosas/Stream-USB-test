@@ -9,12 +9,12 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.pedro.encoder.Frame;
 import com.pedro.encoder.audio.AudioEncoder;
 import com.pedro.encoder.audio.GetAacData;
 import com.pedro.encoder.input.audio.GetMicrophoneData;
 import com.pedro.encoder.input.audio.MicrophoneManager;
 import com.pedro.encoder.input.video.CameraHelper;
-import com.pedro.encoder.input.video.Frame;
 import com.pedro.encoder.input.video.GetCameraData;
 import com.pedro.encoder.utils.CodecUtil;
 import com.pedro.encoder.video.FormatVideoEncoder;
@@ -158,7 +158,7 @@ public abstract class USBBase
                                 boolean noiseSuppressor) {
         microphoneManager.createMicrophone(sampleRate, isStereo, echoCanceler, noiseSuppressor);
         prepareAudioRtp(isStereo, sampleRate);
-        return audioEncoder.prepareAudioEncoder(bitrate, sampleRate, isStereo);
+        return audioEncoder.prepareAudioEncoder(bitrate, sampleRate, isStereo, 0);
     }
 
     /**
@@ -400,7 +400,7 @@ public abstract class USBBase
      * instance it.
      */
     public void disableVideo() {
-        videoEncoder.startSendBlackImage();
+//        videoEncoder.startSendBlackImage();
         videoEnabled = false;
     }
 
@@ -408,7 +408,7 @@ public abstract class USBBase
      * Enable send camera frames.
      */
     public void enableVideo() {
-        videoEncoder.stopSendBlackImage();
+//        videoEncoder.stopSendBlackImage();
         videoEnabled = true;
     }
 
@@ -525,8 +525,8 @@ public abstract class USBBase
     }
 
     @Override
-    public void inputPCMData(byte[] buffer, int size) {
-        audioEncoder.inputPCMData(buffer, size);
+    public void inputPCMData(Frame frame) {
+        audioEncoder.inputPCMData(frame);
     }
 
     @Override

@@ -133,6 +133,10 @@ class RtpService : Service() {
             Log.e(TAG, "RTP service destroy")
         }
 
+        override fun onNewBitrateRtmp(bitrate: Long) {
+//            TODO("Not yet implemented")
+        }
+
         override fun onDisconnectRtmp() {
             showNotification("Stream stopped")
         }
